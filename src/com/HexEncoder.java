@@ -47,9 +47,8 @@ public class HexEncoder {
 		return bitfieldValues;
 	}
 
-	public HexEncoder(String MTI, String eHeader) {
+	public HexEncoder(String MTI) {
 		this.MTI = MTI;
-		this.eHeader = eHeader;
 	}
 	
 	public HexEncoder() {
@@ -68,20 +67,19 @@ public class HexEncoder {
 	}
 
 	public void encodeddata() {
-//		try {
-//				getencodedData();
-//		} catch (NullPointerException e) {
-//			System.out.println("Unable to encode the given data");
-//		}
+		try {
+				getencodedData();
+		} catch (NullPointerException e) {
+			System.out.println("Unable to encode the given data");
+		}
 
 	}
 
 	private void getencodedData() {
 		System.out.println("Starting the encoding of response packet");
 		bitfieldValues = generateBitFieldValues();
-		bitfieldValuesToHex = converter.asciitoHex(bitfieldValues);
-		String tempHexData = eHeaderToHex + " " + MTItoHex + " " + bitmapToHex + " " + bitfieldValuesToHex;
-		encodedHexData = tempHexData.replaceAll("\\s", "");
+		String tempHexData = MTI + " " + bitmap + " " + bitfieldValues;
+		encodedHexData = tempHexData;
 	}
 
 	// --------------------------------------------------------------------------------------------------
@@ -232,14 +230,14 @@ public class HexEncoder {
 					spaces = spaces + " ";
 				}
 
-				finalBitfieldValues = finalBitfieldValues + currentEntry.getValue() + spaces;
+				finalBitfieldValues = finalBitfieldValues +" "+ currentEntry.getValue() + spaces;
 
 				System.out.println("Value of " + currentBitfield + ", " + currentEntry.getValue()
 						+ " was added to the response string");
 			} else if (bitFieldLength.bitfieldLength.get(currentBitfield) == -2) {
 				currentBitfieldLength = currentEntry.getValue().substring(0, 2);
-
-				finalBitfieldValues = finalBitfieldValues + currentBitfieldLength
+ 
+				finalBitfieldValues = finalBitfieldValues +" "+ currentBitfieldLength
 						+ currentEntry.getValue().substring(2);
 
 				System.out.println("Value of " + currentBitfield + " " + currentEntry.getValue()
@@ -247,7 +245,7 @@ public class HexEncoder {
 			} else if (bitFieldLength.bitfieldLength.get(currentBitfield) == -3) {
 				currentBitfieldLength = currentEntry.getValue().substring(0, 3);
 
-				finalBitfieldValues = finalBitfieldValues + currentBitfieldLength
+				finalBitfieldValues =  finalBitfieldValues + " "+ currentBitfieldLength
 						+ currentEntry.getValue().substring(3);
 
 				System.out.println("Value of " + currentBitfield + " " + currentEntry.getValue()

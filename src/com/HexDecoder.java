@@ -88,8 +88,9 @@ public class HexDecoder {
 		}
 		System.out.println("Consolidated bitmap is set as " + consolidatedBitmap);
 		System.out.println("Trying to identify the bitfields with values");
+		bitFieldwithValues = bitfieldAndValueMapping(consolidatedBitmap, hexData);
 		// identify the bitfields involved in the transaction
-		for (Map.Entry<String, String> currentEntry : bitfieldAndValueMapping(consolidatedBitmap, hexData).entrySet()) {
+		for (Map.Entry<String, String> currentEntry : bitFieldwithValues.entrySet()) {
 
 			System.out.println(currentEntry.getKey() + ":" + currentEntry.getValue());
 			
