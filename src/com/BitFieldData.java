@@ -45,7 +45,7 @@ public class BitFieldData {
 			bitfieldLength.put("BITFIELD24", 3);
 			bitfieldLength.put("BITFIELD25", 4);
 			bitfieldLength.put("BITFIELD26", 4);
-			bitfieldLength.put("BITFIELD27", 52);
+			bitfieldLength.put("BITFIELD27", 54);
 			bitfieldLength.put("BITFIELD28", 8);
 			bitfieldLength.put("BITFIELD29", 3);
 			bitfieldLength.put("BITFIELD30", 32);
@@ -66,14 +66,14 @@ public class BitFieldData {
 			bitfieldLength.put("BITFIELD45", -2);
 			bitfieldLength.put("BITFIELD46", -3);
 			bitfieldLength.put("BITFIELD47", -3);
-			bitfieldLength.put("BITFIELD48", -3);
+			bitfieldLength.put("BITFIELD48", 14);
 			bitfieldLength.put("BITFIELD49", -4);
 			bitfieldLength.put("BITFIELD50", -3);
 			bitfieldLength.put("BITFIELD51", -3);
 			bitfieldLength.put("BITFIELD52", 16);
 			bitfieldLength.put("BITFIELD53", -2);
 			bitfieldLength.put("BITFIELD54", -3);
-			bitfieldLength.put("BITFIELD55", -3);
+			bitfieldLength.put("BITFIELD55", -4);
 			bitfieldLength.put("BITFIELD56", -2);
 			bitfieldLength.put("BITFIELD57", 3);
 			bitfieldLength.put("BITFIELD58", -2);

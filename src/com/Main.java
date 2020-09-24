@@ -1,23 +1,33 @@
-package com;
+ package com;
+
+import java.awt.EventQueue;
+import java.util.Map;
 
 public class Main {
 
 	static String fepName = "X9";
-	static String elementsInTransaction = "3 4 11 12 22 24 26 35 41 42";
+	static boolean isGUI = false;
+	static Server server;
+	static GUI window;
+
 	public static void main(String[] args) {
-		
-		String requestpacket = "2200 3030054020C00002 200030 8402000000000099 023576189037 2003103117423308000000200000004000000000000000 200 5499 376357890012348779=99120001234567890123 00000000C123X3451500346782ARST119 011O01461O\\\\99";
-		requestpacket = requestpacket.replaceAll(" ", "");
-		HexDecoder decoder = new HexDecoder(requestpacket);
-		HexEncoder encoder = new HexEncoder("2200");
-		String binarystring =  encoder.generateBinaryData(elementsInTransaction);
-		Converter conv = new Converter();
-		String bitmap = conv.binaryToHex(binarystring).replaceAll(" ","");
-		encoder.setResponseBitFieldsWithValue(decoder.bitFieldwithValues);
-		encoder.setBitmap(bitmap);
-		encoder.encodeddata();
-		System.out.println(encoder.getEncodedHexData());
-		
+
+		if (isGUI) {
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						window = new GUI();
+						window.frmX9Simulator.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		} else {
+			server = new Server();
+			server.start();
+		}
+
 	}
 
 }

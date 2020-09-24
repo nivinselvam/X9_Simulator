@@ -70,6 +70,7 @@ public class Converter {
 	 */
 	// ---------------------------------------------------------------------------------------------------------------
 	public String hexToASCII(String hex) {
+		hex = addSpacesToString(hex);
 		StringBuilder asciiValue = new StringBuilder();
 		tempArray = hex.split(" ");
 		for (String currentByte : tempArray) {

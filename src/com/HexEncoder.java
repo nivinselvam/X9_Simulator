@@ -6,7 +6,7 @@ import java.util.TreeSet;
 public class HexEncoder {
 
 	private String encodedHexData, elementsInTransaction, bitmap, bitmapToHex, bitfieldValues, bitfieldValuesToHex, MTI,
-			MTItoHex, eHeader, eHeaderToHex;
+			MTItoHex, eHeader, eHeaderToHex, MTitoHex1, bitfieldValuestoHex1;
 
 	private Map<String, String> responseBitFieldsWithValue;
 	Converter converter = new Converter();
@@ -78,8 +78,11 @@ public class HexEncoder {
 	private void getencodedData() {
 		System.out.println("Starting the encoding of response packet");
 		bitfieldValues = generateBitFieldValues();
-		String tempHexData = MTI + " " + bitmap + " " + bitfieldValues;
-		encodedHexData = tempHexData;
+		MTitoHex1 = converter.asciitoHex(MTI); //added
+		bitmapToHex = converter.binaryToHex(bitmap);
+		bitfieldValuestoHex1 = converter.asciitoHex(bitfieldValues);//added
+		String tempHexData = MTitoHex1 + " " + bitmapToHex + " " + bitfieldValuestoHex1;
+		encodedHexData = tempHexData.replaceAll(" ", "");
 	}
 
 	// --------------------------------------------------------------------------------------------------
@@ -230,14 +233,14 @@ public class HexEncoder {
 					spaces = spaces + " ";
 				}
 
-				finalBitfieldValues = finalBitfieldValues +" "+ currentEntry.getValue() + spaces;
+				finalBitfieldValues = finalBitfieldValues +""+ currentEntry.getValue() + spaces;//changed the space
 
 				System.out.println("Value of " + currentBitfield + ", " + currentEntry.getValue()
 						+ " was added to the response string");
 			} else if (bitFieldLength.bitfieldLength.get(currentBitfield) == -2) {
 				currentBitfieldLength = currentEntry.getValue().substring(0, 2);
  
-				finalBitfieldValues = finalBitfieldValues +" "+ currentBitfieldLength
+				finalBitfieldValues = finalBitfieldValues + currentBitfieldLength
 						+ currentEntry.getValue().substring(2);
 
 				System.out.println("Value of " + currentBitfield + " " + currentEntry.getValue()
@@ -245,8 +248,16 @@ public class HexEncoder {
 			} else if (bitFieldLength.bitfieldLength.get(currentBitfield) == -3) {
 				currentBitfieldLength = currentEntry.getValue().substring(0, 3);
 
-				finalBitfieldValues =  finalBitfieldValues + " "+ currentBitfieldLength
+				finalBitfieldValues =  finalBitfieldValues + currentBitfieldLength
 						+ currentEntry.getValue().substring(3);
+
+				System.out.println("Value of " + currentBitfield + " " + currentEntry.getValue()
+						+ " was added to the response string");
+			}else if (bitFieldLength.bitfieldLength.get(currentBitfield) == -4) {
+				currentBitfieldLength = currentEntry.getValue().substring(0, 4);
+
+				finalBitfieldValues =  finalBitfieldValues + currentBitfieldLength
+						+ currentEntry.getValue().substring(4);
 
 				System.out.println("Value of " + currentBitfield + " " + currentEntry.getValue()
 						+ " was added to the response string");
